@@ -15,3 +15,4 @@ mongoose.connect(MONGODB_URI, mongooseOptions, () => {
 })
 
 app.start(PORT);
+
