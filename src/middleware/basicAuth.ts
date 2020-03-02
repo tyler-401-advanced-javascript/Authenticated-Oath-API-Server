@@ -2,8 +2,11 @@ import express from 'express';
 import User from '../models/users'
 import base64 from 'base-64';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+
 import { ITokenedRequest } from '../src/app';
+
+import jwtsign from '../util/signjwt'
+
 
 //todo: outsource the DB operations to the users model.
 export default async function basicAuthorization(req: ITokenedRequest, res: express.Response, next: any) {
@@ -15,10 +18,14 @@ export default async function basicAuthorization(req: ITokenedRequest, res: expr
     const parsed = req.headers.authorization.split(' ').pop();
     const decoded = base64.decode(parsed);
 
-    const [username, password] = decoded.split(':')
+    let [username, password] = decoded.split(':')
+
+    if(username.includes(' ')) {
+      username = username.split(' ').pop();
+    }
     console.log('username', username, 'password', password)
 
-    User.test() // WORKS!
+    // User.test() // WORKS!
     
     //find that user by username inside the db })
     const results = await User.find({ username }).populate('role');
@@ -27,12 +34,13 @@ export default async function basicAuthorization(req: ITokenedRequest, res: expr
       return res.status(406).json({ message: 'Bad Credentials' })
     } else {
 
-      // if credentials are good, set authorization on headers.
+
+      // if credentials are good, set token on req.
       if (await bcrypt.compare(password, results[0].password)) {
-        req.token = jwt.sign({ username: username, email: results[0].email }, process.env.SECRET); 
+        req.token = jwtsign({ username: username, role: results[0].role }); 
         next();
       } else {
-        res.status(500).json({ message: 'you fucked up, bad credentials' });
+        next('you fucked up, bad credentials');
       }
     }
   }
