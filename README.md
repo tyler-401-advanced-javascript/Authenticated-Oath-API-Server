@@ -8,7 +8,7 @@ JSON-serving API written in TypeScript with user authentication using JWT (JSON 
 
 ## Links and Resources
 
-- [Submission PR](https://github.com/tyler-401-advanced-javascript/Authenticated-Server/pull/2)
+- [Submission PR](https://github.com/tyler-401-advanced-javascript/Authenticated-Oath-API-Server/pull/1/)
 - Note yet hosted live
 
 
