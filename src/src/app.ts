@@ -17,7 +17,7 @@ export interface ITokenedRequest extends express.Request {
 }
 
 //instantiate and configure express
-const app = express();
+export const app = express();
 app.use(express.json());
 app.use(express.static('./dist/public'))
 
@@ -41,24 +41,26 @@ app.use(rolesRouter);
 //catch alls
 //500 errors
 import serverErrorHandler from '../middleware/500';
-app.use(serverErrorHandler); 
+app.use(serverErrorHandler);
 
 //400 errors
 import notFoundHandler from '../middleware/404';
 app.use(notFoundHandler);
 
-export default {
-  app: app,
-  start: (port: string) => {
-    const PORT = port || 3001;
-    // https.createServer({
-    //   key: fs.readFileSync(path.join(__dirname, '..', 'server.key')),
-    //   cert: fs.readFileSync(path.join(__dirname, '..', 'server.cert'))
-    // }, app).listen(PORT, () => {
-    app.listen(PORT, () => {
-      console.log(`Listining on ${PORT}`)
-    })
-  }
+
+export const startServer = async (port: string) => {
+  const PORT = port || 3001;
+  // https.createServer({
+  //   key: fs.readFileSync(path.join(__dirname, '..', 'server.key')),
+  //   cert: fs.readFileSync(path.join(__dirname, '..', 'server.cert'))
+  // }, app).listen(PORT, () => {
+    const listening =  await app.listen(PORT)
+    console.log(`Listening on ${PORT}`)
+    return listening;
 }
+
+
+
+
 
 
