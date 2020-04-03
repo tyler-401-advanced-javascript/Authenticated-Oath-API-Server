@@ -366,12 +366,16 @@
         "signature": "8cd27a7c1b0a36226fb5ebcb5ee8918dfb0e05caf48190eddcf6d143395b4a43"
       },
       "./src/middleware/bearerauth.ts": {
-        "version": "9c8507f6bc129f047b9387680ba7d51799c0be27f17255e9e389f3aa575df6ff",
+        "version": "7c5a9c9cc6522a7456e03ea2b72228da7454fe0f7d9fa43fd2045eeebafeba61",
         "signature": "1cab6fe10bc8af3cb0b8b7e29c9723b7ca875ce597fbbe67a742f44448127b63"
       },
       "./src/middleware/accesscontrollist.ts": {
         "version": "de838f081971ae2e93145a0e724115935f1ca9360c8b9ce2640c23b61cb19d1e",
         "signature": "617410b575b234cbe54a328017ead5d2936622b57762286695751f1be59bdc94"
+      },
+      "./node_modules/@types/cors/index.d.ts": {
+        "version": "67a79af60f6e0f8eac8156364361915047de18fe367d7e0dd78a91add9f11bad",
+        "signature": "67a79af60f6e0f8eac8156364361915047de18fe367d7e0dd78a91add9f11bad"
       },
       "./node_modules/@types/cookiejar/index.d.ts": {
         "version": "16b7fb094ffaa5d270f934e7406e8baee2f8245cfabf6dcc20f693389f005f56",
@@ -406,12 +410,20 @@
         "signature": "e72aa2bf8887d074a4276dd204452dfeec324af51f749641dea374126bb5ef0b"
       },
       "./src/src/routers/users.ts": {
-        "version": "4a9cd860d972fe60615bd7305894e11b69a9e830273de281ae7d873a11536c24",
+        "version": "c1eab1e2d86fcf2d6685d3799d4e08d4febb5322b943d490de29e923a8541d76",
         "signature": "4c7f841fba7253d29c30d2b86677d4526e40c99cbf915c57b0dea1a88afc79e6"
       },
       "./src/src/routers/roles.ts": {
         "version": "e0c4445df37c96bb0ba8a75dc7046143713a827f5c677112e7aa697cd88636c2",
         "signature": "2623ac8881a9e9c85b94b9a9a011f137f00a3fbea4bd9695929b4c774e6ddcdc"
+      },
+      "./src/models/products.ts": {
+        "version": "ab41d4380396fab0753ae5dadf4b08b67ec4c4f47fca3d95f8f6eb1597590754",
+        "signature": "a55eec17af0cde21c2ddf5d755481743ea31c6e07f690bf29ff61dcb1bf7a819"
+      },
+      "./src/src/routers/products.ts": {
+        "version": "ccc918f3d9ac202017adc92aa0df44e4895d89fbdf71dd0ff662a411df4e6252",
+        "signature": "924b676711a8b592080a26563e3205807bc1ff2013a368e769d13cd61d5c9e48"
       },
       "./src/middleware/500.ts": {
         "version": "6236f50266589990988a1ce91450fe08497ba9dbcf07b923a2a01320062d4499",
@@ -422,7 +434,7 @@
         "signature": "7a0e8506830e143ed1e6525ac7bb8f6a766ad2a3b408eaecf4146647ff6ab20b"
       },
       "./src/src/app.ts": {
-        "version": "c3cf58a5cfcd1082aa4bb7c365e6b0d1b1f4ecf72028f7ed18ce84327512965d",
+        "version": "55ab582f6f8867bb04065c4887748d57b1f4bdad63ee997bf025418a0771b752",
         "signature": "63b274b5400fc47ea450721073f9c5a4632397b44ab897eb33f7ccb23c1e58fc"
       },
       "./src/index.ts": {
@@ -1236,6 +1248,13 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./node_modules/@types/cors/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./node_modules/@types/cookiejar/index.d.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1327,6 +1346,24 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/models/products.ts": [
+        "./node_modules/@types/mongoose/index.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/src/routers/products.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./src/src/app.ts",
+        "./src/middleware/bearerauth.ts",
+        "./src/middleware/accesscontrollist.ts",
+        "./src/models/products.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./src/middleware/500.ts": [
         "./node_modules/@types/express/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
@@ -1346,9 +1383,11 @@
         "./node_modules/@types/express/index.d.ts",
         "./src/middleware/bearerauth.ts",
         "./src/middleware/accesscontrollist.ts",
+        "./node_modules/@types/cors/index.d.ts",
         "./src/src/routers/oauth.ts",
         "./src/src/routers/users.ts",
         "./src/src/routers/roles.ts",
+        "./src/src/routers/products.ts",
         "./src/middleware/500.ts",
         "./src/middleware/404.ts",
         "./node_modules/@types/node/fs.d.ts",
@@ -2200,6 +2239,13 @@
         "./src/src/app.ts",
         "./node_modules/@types/express/index.d.ts"
       ],
+      "./node_modules/@types/cors/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./node_modules/@types/cookiejar/index.d.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2246,6 +2292,12 @@
         "./node_modules/@types/express-serve-static-core/index.d.ts"
       ],
       "./src/src/routers/roles.ts": [
+        "./node_modules/@types/express-serve-static-core/index.d.ts"
+      ],
+      "./src/models/products.ts": [
+        "./node_modules/@types/mongoose/index.d.ts"
+      ],
+      "./src/src/routers/products.ts": [
         "./node_modules/@types/express-serve-static-core/index.d.ts"
       ],
       "./src/middleware/500.ts": [
@@ -2526,6 +2578,7 @@
       "./src/models/users.ts",
       "./src/middleware/bearerauth.ts",
       "./src/middleware/accesscontrollist.ts",
+      "./node_modules/@types/cors/index.d.ts",
       "./node_modules/@types/cookiejar/index.d.ts",
       "./node_modules/@types/superagent/index.d.ts",
       "./src/middleware/handleoauth.ts",
@@ -2536,6 +2589,8 @@
       "./src/middleware/basicauth.ts",
       "./src/src/routers/users.ts",
       "./src/src/routers/roles.ts",
+      "./src/models/products.ts",
+      "./src/src/routers/products.ts",
       "./src/middleware/500.ts",
       "./src/middleware/404.ts",
       "./src/index.ts",

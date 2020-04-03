@@ -15,7 +15,7 @@ export default async function authorize(req: ITokenedRequest, res: express.Respo
     const parsed = req.headers.authorization.split(' ').pop();
     try {
       //2. decode and verify that the token is not expired 
-      const decoded = jwt.verify(parsed, SECRET, { maxAge: '5m' }) as any; // return obj is typed any.
+      const decoded = jwt.verify(parsed, SECRET) as any; // return obj is typed any.
 
       //3. see if the user exists
       const user = await User.findOne({ username: decoded.username }).populate('role');

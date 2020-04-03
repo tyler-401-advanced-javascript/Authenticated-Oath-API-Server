@@ -20,29 +20,36 @@ const usersRouter = express.Router();
 //get all users from db.
 //? public routes
 usersRouter.get('/users', (req: ITokenedRequest, res, next) => {
-  console.log(req.token);
+  console.log('token', req.token);
   User.find({}).populate('role')
     .then(results => {
+      console.log('got here');
       res.status(200).json(results)
     })
     .catch(console.log)
 })
 
-usersRouter.post('/signup', async (req, res) => {
+usersRouter.post('/signup', async (req, res, next: any) => {
   //create instance of model with new user data. And save to DB
-  const newUser = new User({
-    username: req.body.username,
-    email: req.body.email,
-    password: await bcrypt.hash(req.body.password, 5),
-    role: await Role.findOne({ name: req.body.role })
-  })
-  newUser.save()
-    .then(results => {
-
-      //issue a token in the response.
-      res.status(201).json({ token: newUser.generateToken() })
+  try {
+    const newUser = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: await bcrypt.hash(req.body.password, 5),
+      role: await Role.findOne({ name: req.body.role })
     })
-    .catch(err => res.status(406).json({ error: err.message }));
+    newUser.save()
+      .then(results => {
+
+        //issue a token in the response.
+        res.status(201).json({ token: newUser.generateToken() })
+      })
+      .catch(err => res.status(406).json({ error: err.message }));
+
+  } catch (error) {
+    next(error)
+  }
+  
 })
 
 //? require basic auth
@@ -59,11 +66,11 @@ usersRouter.post('/users', bearerAuth, acl('admin'), (req: ITokenedRequest, res,
 })
 
 usersRouter.put('/users', bearerAuth, acl('admin'), (req: ITokenedRequest, res, next) => {
-  res.status(202).json({ message: 'You successfully updated a user, dummy route, you didnt actually. ', token: req.token }) 
+  res.status(202).json({ message: 'You successfully updated a user, dummy route, you didnt actually. ', token: req.token })
 })
 
 usersRouter.delete('/users', bearerAuth, acl('admin'), (req: ITokenedRequest, res, next) => {
-  res.status(202).json({ message: 'You successfully deleted a user, not.', token: req.token }) 
+  res.status(202).json({ message: 'You successfully deleted a user, not.', token: req.token })
 })
 
 

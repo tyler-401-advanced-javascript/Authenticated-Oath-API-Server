@@ -15,7 +15,7 @@ async function authorize(req, res, next) {
     else {
         const parsed = req.headers.authorization.split(' ').pop();
         try {
-            const decoded = jsonwebtoken_1.default.verify(parsed, SECRET, { maxAge: '5m' });
+            const decoded = jsonwebtoken_1.default.verify(parsed, SECRET);
             const user = await users_1.default.findOne({ username: decoded.username }).populate('role');
             if (user.username) {
                 req.token = signjwt_1.default({ username: user.username, role: user.role });

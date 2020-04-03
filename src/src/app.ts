@@ -1,7 +1,8 @@
 //core dependencies / libraries
 import express from 'express';
 import bearerAuth from '../middleware/bearerAuth';
-import acl from '../middleware/accessControlList'
+import acl from '../middleware/accessControlList';
+import cors from 'cors';
 
 
 //in-memory testing resource.
@@ -20,6 +21,10 @@ export interface ITokenedRequest extends express.Request {
 export const app = express();
 app.use(express.json());
 app.use(express.static('./dist/public'))
+app.use(cors({
+  methods: 'GET,HEAD,OPTIONS,PUT,DELETE,POST',
+  origin: '*'
+}))
 
 //routes
 app.get('/chickens', bearerAuth, acl('admin'), (req: ITokenedRequest, res, next) => {
@@ -37,6 +42,10 @@ app.use(usersRouter);
 //roles routes
 import rolesRouter from './routers/roles';
 app.use(rolesRouter);
+
+//roles routes
+import productsRouter from './routers/products';
+app.use(productsRouter);
 
 //catch alls
 //500 errors
